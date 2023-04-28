@@ -2,6 +2,8 @@ import argparse
 import json
 from datetime import datetime, timedelta
 
+from dateutil.relativedelta import relativedelta
+
 from freee import Freee
 
 
@@ -22,8 +24,9 @@ def prepare_invoice(hours, month) -> dict:
     invoice_template["issue_date"] = datetime.now().strftime("%Y-%m-%d")
     invoice_template["booking_date"] = datetime.now().strftime("%Y-%m-%d")
     invoice_template["invoice_contents"][0]["qty"] = hours  # Worked hours
-    month_after_next_month = datetime.strptime(f"{month}-01", "%Y-%m-%d") + timedelta(days=62)
-    due_date = month_after_next_month.replace(day=10)
+    next_month = datetime.strptime(f"{month}-01", "%Y-%m-%d") + timedelta(days=31)
+    # Subtract 1 day from the month after next month's first day to get the last day of the next month.
+    due_date = next_month + relativedelta(day=1, months=1) - timedelta(days=1)
     due_date_formatted = due_date.strftime("%Y-%m-%d")
     invoice_template["due_date"] = due_date_formatted
     return invoice_template
