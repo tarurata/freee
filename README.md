@@ -18,9 +18,9 @@ To use this script, you need to have Python installed on your system along with 
 3. **Prepare invoice_template.json**: You can download existing invoice data in json format using Free API.
 4. **Run the Script**: The script can be executed with the following command:
     ```
-    poetry run python <script_name>.py --hours <HOURS> --month <YYYY-MM>
+    poetry run python create_invoice.py --hours <HOURS> --month <YYYY-MM>
     ```
-   Replace `<script_name>` with the name of the script file, `<HOURS>` with the number of hours worked, and `<YYYY-MM>` with the month for which the invoice is being prepared.
+   Replace `<HOURS>` with the number of hours worked, and `<YYYY-MM>` with the month for which the invoice is being prepared.
 
 ## Requirements
 - Python 3.7+
